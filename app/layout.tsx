@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { DataInitializer } from "@/components/providers/DataInitializer";
+import { AIAssistantButton } from "@/components/ai/AIAssistantButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,6 +47,7 @@ export default function RootLayout({
         <div className="min-h-screen pb-16">
           {children}
         </div>
+        <AIAssistantButton />
       </body>
     </html>
   );

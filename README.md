@@ -76,9 +76,41 @@ gtd-agent/
 ## Development Roadmap
 
 - [x] Phase 1: Foundation - Project setup, navigation, core components
-- [ ] Phase 2: Core GTD Features - Task management, project grouping
-- [ ] Phase 3: AI Integration - AI service integration for task advice
+- [x] Phase 2: Core GTD Features - Task management, project grouping
+- [x] Phase 3: AI Integration - AI service integration for task advice
 - [ ] Phase 4: Polish & Testing - UI refinements, performance optimization
+
+## AI Configuration
+
+To enable AI features, you need to configure an AI service:
+
+1. Create a `.env.local` file in the root directory
+2. Add your AI service configuration:
+
+```env
+# Choose provider: 'qwen', 'zhipu', or 'openai'
+NEXT_PUBLIC_AI_PROVIDER=qwen
+
+# Your API key
+NEXT_PUBLIC_AI_API_KEY=your_api_key_here
+
+# Optional: Custom base URL
+# NEXT_PUBLIC_AI_BASE_URL=https://custom-api-url.com
+```
+
+### Supported AI Providers
+
+- **Alibaba Qwen**: Get API key from [DashScope Console](https://dashscope.console.aliyun.com/)
+- **Zhipu AI**: Get API key from [Zhipu AI Platform](https://open.bigmodel.cn/)
+- **OpenAI**: Get API key from [OpenAI Platform](https://platform.openai.com/)
+
+### AI Features
+
+- **Task Organization Advice**: Get suggestions on how to organize tasks into projects and contexts
+- **Scheduling Advice**: Get recommendations on when to schedule tasks
+- **What Should I Do Now?**: AI assistant that recommends the best tasks to work on
+- **Implementation Guidance**: Step-by-step breakdown for complex tasks
+- **AI Chat**: Conversational assistant for GTD-related questions
 
 ## License
 

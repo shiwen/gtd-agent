@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { X, Calendar, Flag, FolderKanban, Tag } from 'lucide-react';
 import { format } from 'date-fns';
+import { AIAdvicePanel } from '@/components/ai/AIAdvicePanel';
 
 interface TaskModalProps {
   task?: Task;
@@ -234,6 +235,13 @@ export function TaskModal({ task, isOpen, onClose, onSave }: TaskModalProps) {
               placeholder="例如: 30"
             />
           </div>
+
+          {task && (
+            <>
+              <AIAdvicePanel task={task} adviceType="organization" />
+              <AIAdvicePanel task={task} adviceType="implementation" />
+            </>
+          )}
 
           <div className="flex gap-2 pt-4">
             <Button onClick={handleSave} className="flex-1">
