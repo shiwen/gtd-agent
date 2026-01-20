@@ -1,0 +1,15 @@
+<view class="task card" bindtap="onTap">
+  <view class="row gap16">
+    <view class="titleWrap">
+      <view class="taskTitle">{{task.title}}</view>
+      <view wx:if="{{task.description}}" class="taskDesc muted">{{task.description}}</view>
+      <view class="meta muted">
+        <text wx:if="{{task.priority}}">{{priorityLabel}}</text>
+        <text wx:if="{{task.dueDate}}"> · 截止 {{dueText}}</text>
+        <text wx:if="{{task.scheduledDate}}"> · 安排 {{scheduledText}}</text>
+      </view>
+    </view>
+    <button wx:if="{{showDelete}}" class="btnDel" data-id="{{task.id}}" bindtap="onDelete">删</button>
+  </view>
+</view>
+

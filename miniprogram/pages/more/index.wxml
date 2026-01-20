@@ -1,0 +1,46 @@
+<view class="container">
+  <view class="titleRow">
+    <view class="title">更多</view>
+  </view>
+
+  <view class="card" style="padding: 22rpx;">
+    <view class="muted">把收件箱清空，把想法变成下一步行动。</view>
+  </view>
+
+  <view style="height: 18rpx;"></view>
+
+  <view class="card" style="padding: 22rpx;">
+    <view class="row gap16" style="justify-content: space-between;">
+      <view>
+        <view style="font-weight:700;">AI 助手</view>
+        <view class="muted" style="font-size:24rpx; margin-top:6rpx;">对话式 GTD 指导</view>
+      </view>
+      <button class="btnPrimary" bindtap="goAIChat">打开</button>
+    </view>
+  </view>
+
+  <view style="height: 18rpx;"></view>
+
+  <view class="card" style="padding: 22rpx;">
+    <view class="row gap16" style="justify-content: space-between;">
+      <view>
+        <view style="font-weight:700;">将来/也许</view>
+        <view class="muted" style="font-size:24rpx; margin-top:6rpx;">暂时不做，但别忘了</view>
+      </view>
+      <button class="btnPrimary" bindtap="goSomeday">进入</button>
+    </view>
+  </view>
+
+  <view style="height: 18rpx;"></view>
+
+  <view class="card" style="padding: 22rpx;">
+    <view class="row gap16" style="justify-content: space-between;">
+      <view>
+        <view style="font-weight:700;">参考资料</view>
+        <view class="muted" style="font-size:24rpx; margin-top:6rpx;">保存链接与笔记</view>
+      </view>
+      <button class="btnPrimary" bindtap="goReference">进入</button>
+    </view>
+  </view>
+</view>
+

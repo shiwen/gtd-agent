@@ -1,0 +1,31 @@
+<view class="container">
+  <view class="titleRow">
+    <view class="title">日程安排</view>
+  </view>
+
+  <input class="input" placeholder="搜索任务..." value="{{search}}" bindinput="onSearch" />
+  <view style="height: 16rpx;"></view>
+
+  <view wx:if="{{filtered.length===0}}" class="card" style="padding: 28rpx;">
+    <view class="muted">暂无已安排的任务</view>
+  </view>
+
+  <task-card
+    wx:for="{{filtered}}"
+    wx:key="id"
+    task="{{item}}"
+    showDelete="{{true}}"
+    bind:tapTask="onTapTask"
+    bind:deleteTask="onDeleteTask"
+  />
+</view>
+
+<task-editor
+  open="{{editorOpen}}"
+  task="{{selected}}"
+  defaultStatus="scheduled"
+  bind:close="onCloseEditor"
+  bind:save="onSaveTask"
+  bind:delete="onDeleteFromEditor"
+/>
+

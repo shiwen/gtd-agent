@@ -1,0 +1,95 @@
+<view wx:if="{{open}}" class="overlay" catchtouchmove="noop">
+  <view class="panel card">
+    <view class="header row gap12">
+      <view class="headerTitle">{{titleText}}</view>
+      <button class="btnGhost" bindtap="onClose">关闭</button>
+    </view>
+
+    <view class="field">
+      <view class="label muted">标题 *</view>
+      <input class="input" value="{{form.title}}" placeholder="任务标题" bindinput="onInputTitle" />
+    </view>
+
+    <view class="field">
+      <view class="label muted">描述</view>
+      <textarea class="input textarea" value="{{form.description}}" placeholder="任务描述" auto-height bindinput="onInputDesc" />
+    </view>
+
+    <view class="field">
+      <view class="label muted">状态</view>
+      <picker mode="selector" range="{{statusOptions}}" range-key="label" value="{{statusIndex}}" bindchange="onPickStatus">
+        <view class="picker input">{{statusOptions[statusIndex].label}}</view>
+      </picker>
+    </view>
+
+    <view class="field">
+      <view class="label muted">优先级</view>
+      <view class="row gap12">
+        <button class="{{form.priority==='low'?'btnPrimary':'btnGhost'}}" data-v="low" bindtap="onPickPriority">低</button>
+        <button class="{{form.priority==='medium'?'btnPrimary':'btnGhost'}}" data-v="medium" bindtap="onPickPriority">中</button>
+        <button class="{{form.priority==='high'?'btnPrimary':'btnGhost'}}" data-v="high" bindtap="onPickPriority">高</button>
+      </view>
+    </view>
+
+    <view class="field">
+      <view class="label muted">项目</view>
+      <picker mode="selector" range="{{projectOptions}}" range-key="label" value="{{projectIndex}}" bindchange="onPickProject">
+        <view class="picker input">{{projectOptions[projectIndex].label}}</view>
+      </picker>
+    </view>
+
+    <view class="field">
+      <view class="label muted">上下文</view>
+      <view class="row wrap gap12">
+        <button
+          wx:for="{{contexts}}"
+          wx:key="id"
+          class="{{form.contextIds.indexOf(item.id) >= 0 ? 'ctxSelected' : 'btnGhost'}}"
+          data-id="{{item.id}}"
+          bindtap="onToggleContext"
+        >
+          {{item.name}}
+        </button>
+        <view wx:if="{{contexts.length===0}}" class="muted" style="font-size:24rpx;">暂无上下文</view>
+      </view>
+    </view>
+
+    <view class="field">
+      <view class="label muted">截止日期</view>
+      <picker mode="date" value="{{form.dueDate}}" bindchange="onPickDue">
+        <view class="picker input">{{form.dueDate || '未设置'}}</view>
+      </picker>
+    </view>
+
+    <view class="field">
+      <view class="label muted">安排日期</view>
+      <picker mode="date" value="{{form.scheduledDate}}" bindchange="onPickScheduled">
+        <view class="picker input">{{form.scheduledDate || '未设置'}}</view>
+      </picker>
+    </view>
+
+    <view class="field">
+      <view class="label muted">预计时间（分钟）</view>
+      <input class="input" type="number" value="{{form.estimatedTime}}" placeholder="例如 30" bindinput="onInputEstimate" />
+    </view>
+
+    <view wx:if="{{task && task.id}}" class="field">
+      <view class="label muted">AI 助手</view>
+      <view class="row gap12">
+        <button class="btnGhost" bindtap="onAIOrganization" disabled="{{aiLoading}}">组织建议</button>
+        <button class="btnGhost" bindtap="onAIImplementation" disabled="{{aiLoading}}">执行指导</button>
+      </view>
+      <view wx:if="{{aiLoading}}" class="muted" style="font-size:24rpx; margin-top:10rpx;">AI 正在思考...</view>
+      <view wx:if="{{aiError}}" class="muted" style="font-size:24rpx; margin-top:10rpx; color:#FFB4B4;">{{aiError}}</view>
+      <view wx:if="{{aiText}}" class="card" style="margin-top: 12rpx; padding: 18rpx;">
+        <view class="muted" style="white-space: pre-wrap;">{{aiText}}</view>
+      </view>
+    </view>
+
+    <view class="footer row gap16">
+      <button class="btnPrimary" bindtap="onSave">保存</button>
+      <button wx:if="{{showDelete}}" class="btnDanger" bindtap="onDelete">删除</button>
+    </view>
+  </view>
+</view>
+

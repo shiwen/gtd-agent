@@ -1,0 +1,29 @@
+<view wx:if="{{open}}" class="overlay" catchtouchmove="noop">
+  <view class="panel card">
+    <view class="header row gap12">
+      <view class="headerTitle">{{titleText}}</view>
+      <button class="btnGhost" bindtap="onClose">关闭</button>
+    </view>
+
+    <view class="field">
+      <view class="label muted">标题 *</view>
+      <input class="input" value="{{form.title}}" placeholder="标题" bindinput="onInputTitle" />
+    </view>
+
+    <view class="field">
+      <view class="label muted">内容</view>
+      <textarea class="input textarea" value="{{form.content}}" placeholder="内容/备注" auto-height bindinput="onInputContent" />
+    </view>
+
+    <view class="field">
+      <view class="label muted">链接（可选）</view>
+      <input class="input" value="{{form.url}}" placeholder="https://..." bindinput="onInputUrl" />
+    </view>
+
+    <view class="footer row gap16">
+      <button class="btnPrimary" bindtap="onSave">保存</button>
+      <button wx:if="{{showDelete}}" class="btnDanger" bindtap="onDelete">删除</button>
+    </view>
+  </view>
+</view>
+

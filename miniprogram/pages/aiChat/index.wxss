@@ -1,0 +1,42 @@
+.msgRow {
+  display: flex;
+  margin-bottom: 14rpx;
+}
+
+.msgRow.user { justify-content: flex-end; }
+.msgRow.assistant { justify-content: flex-start; }
+
+.bubble {
+  max-width: 78%;
+  padding: 16rpx 18rpx;
+  border-radius: 22rpx;
+  font-size: 26rpx;
+}
+
+.bubble.user {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.65), rgba(96, 165, 250, 0.55));
+  color: #081226;
+}
+
+.bubble.assistant {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: #E6F6FF;
+}
+
+.composer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 18rpx 18rpx 28rpx;
+  background: rgba(11, 18, 32, 0.96);
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  display: flex;
+  gap: 14rpx;
+}
+
+.composer .input {
+  flex: 1;
+}
+

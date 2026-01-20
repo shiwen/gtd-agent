@@ -1,0 +1,33 @@
+<view class="container">
+  <view class="titleRow">
+    <view class="title">{{name || '项目详情'}}</view>
+    <button class="btnPrimary" bindtap="onAddTask">+ 任务</button>
+  </view>
+
+  <input class="input" placeholder="搜索任务..." value="{{search}}" bindinput="onSearch" />
+  <view style="height: 16rpx;"></view>
+
+  <view wx:if="{{filtered.length===0}}" class="card" style="padding: 28rpx;">
+    <view class="muted">项目中暂无任务</view>
+  </view>
+
+  <task-card
+    wx:for="{{filtered}}"
+    wx:key="id"
+    task="{{item}}"
+    showDelete="{{true}}"
+    bind:tapTask="onTapTask"
+    bind:deleteTask="onDeleteTask"
+  />
+</view>
+
+<task-editor
+  open="{{editorOpen}}"
+  task="{{selected}}"
+  defaultStatus="inbox"
+  defaultProjectId="{{id}}"
+  bind:close="onCloseEditor"
+  bind:save="onSaveTask"
+  bind:delete="onDeleteFromEditor"
+/>
+

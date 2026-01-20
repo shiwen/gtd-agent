@@ -1,0 +1,15 @@
+<view class="container" style="padding-bottom: 180rpx;">
+  <scroll-view scroll-y="true" style="height: calc(100vh - 240rpx);" scroll-with-animation="true" scroll-into-view="{{scrollTo}}">
+    <view wx:for="{{messages}}" wx:key="id" id="{{item.id}}" class="msgRow {{item.role}}">
+      <view class="bubble {{item.role}}">
+        <text style="white-space: pre-wrap;">{{item.content}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="composer">
+    <input class="input" placeholder="输入消息..." value="{{input}}" bindinput="onInput" confirm-type="send" bindconfirm="onSend" />
+    <button class="btnPrimary" bindtap="onSend" disabled="{{loading || !input.trim()}}">{{loading ? '...' : '发送'}}</button>
+  </view>
+</view>
+

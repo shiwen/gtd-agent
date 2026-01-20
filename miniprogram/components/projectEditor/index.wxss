@@ -1,0 +1,50 @@
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28rpx;
+  z-index: 9999;
+}
+
+.panel {
+  width: 100%;
+  max-height: 90vh;
+  overflow: auto;
+  padding: 22rpx;
+}
+
+.header {
+  justify-content: space-between;
+  margin-bottom: 18rpx;
+}
+
+.headerTitle {
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.field { margin-top: 16rpx; }
+.label { margin-bottom: 10rpx; font-size: 24rpx; }
+.textarea { min-height: 120rpx; }
+.picker { display: flex; align-items: center; }
+
+.footer {
+  margin-top: 22rpx;
+  justify-content: space-between;
+}
+
+.btnDanger {
+  background: rgba(255, 80, 80, 0.16);
+  color: #FFD7D7;
+  border: 1px solid rgba(255, 80, 80, 0.30);
+  border-radius: 999rpx;
+  padding: 16rpx 22rpx;
+  font-weight: 700;
+}
+

@@ -1,0 +1,30 @@
+<view class="container">
+  <view class="titleRow">
+    <view class="title">收件箱</view>
+    <button class="btnPrimary" bindtap="onAdd">+ 新建</button>
+  </view>
+
+  <input class="input" placeholder="搜索任务..." value="{{search}}" bindinput="onSearch" />
+  <view style="height: 16rpx;"></view>
+
+  <view wx:if="{{filtered.length===0}}" class="card" style="padding: 28rpx;">
+    <view class="muted">收件箱为空</view>
+  </view>
+
+  <task-card
+    wx:for="{{filtered}}"
+    wx:key="id"
+    task="{{item}}"
+    bind:tapTask="onTapTask"
+  />
+</view>
+
+<task-editor
+  open="{{editorOpen}}"
+  task="{{selected}}"
+  defaultStatus="inbox"
+  bind:close="onCloseEditor"
+  bind:save="onSaveTask"
+  bind:delete="onDeleteTask"
+/>
+

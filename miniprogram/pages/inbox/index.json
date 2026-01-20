@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "task-card": "/components/taskCard/index",
+    "task-editor": "/components/taskEditor/index"
+  },
+  "navigationBarTitleText": "收件箱"
+}
+

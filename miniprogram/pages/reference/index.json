@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "reference-editor": "/components/referenceEditor/index"
+  },
+  "navigationBarTitleText": "参考资料"
+}
+

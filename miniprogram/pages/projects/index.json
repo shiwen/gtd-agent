@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "project-editor": "/components/projectEditor/index"
+  },
+  "navigationBarTitleText": "项目"
+}
+

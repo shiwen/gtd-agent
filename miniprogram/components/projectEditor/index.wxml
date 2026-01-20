@@ -1,0 +1,31 @@
+<view wx:if="{{open}}" class="overlay" catchtouchmove="noop">
+  <view class="panel card">
+    <view class="header row gap12">
+      <view class="headerTitle">{{titleText}}</view>
+      <button class="btnGhost" bindtap="onClose">关闭</button>
+    </view>
+
+    <view class="field">
+      <view class="label muted">名称 *</view>
+      <input class="input" value="{{form.name}}" placeholder="项目名称" bindinput="onInputName" />
+    </view>
+
+    <view class="field">
+      <view class="label muted">描述</view>
+      <textarea class="input textarea" value="{{form.description}}" placeholder="项目描述" auto-height bindinput="onInputDesc" />
+    </view>
+
+    <view class="field">
+      <view class="label muted">状态</view>
+      <picker mode="selector" range="{{statusOptions}}" range-key="label" value="{{statusIndex}}" bindchange="onPickStatus">
+        <view class="picker input">{{statusOptions[statusIndex].label}}</view>
+      </picker>
+    </view>
+
+    <view class="footer row gap16">
+      <button class="btnPrimary" bindtap="onSave">保存</button>
+      <button wx:if="{{showDelete}}" class="btnDanger" bindtap="onDelete">删除</button>
+    </view>
+  </view>
+</view>
+

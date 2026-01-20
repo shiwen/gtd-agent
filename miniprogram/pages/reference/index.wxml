@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="titleRow">
+    <view class="title">参考资料</view>
+    <button class="btnPrimary" bindtap="onAdd">+ 新建</button>
+  </view>
+
+  <view wx:if="{{items.length===0}}" class="card" style="padding: 28rpx;">
+    <view class="muted">暂无参考资料</view>
+  </view>
+
+  <view
+    wx:for="{{items}}"
+    wx:key="id"
+    class="card"
+    style="padding: 22rpx; margin-bottom: 18rpx;"
+    bindtap="onTapItem"
+    data-id="{{item.id}}"
+  >
+    <view style="font-size:30rpx; font-weight:700;">{{item.title}}</view>
+    <view wx:if="{{item.content}}" class="muted" style="font-size:24rpx; margin-top:8rpx; white-space: pre-wrap;">{{item.content}}</view>
+    <view wx:if="{{item.url}}" class="muted" style="font-size:22rpx; margin-top:10rpx;">{{item.url}}</view>
+  </view>
+</view>
+
+<reference-editor
+  open="{{editorOpen}}"
+  reference="{{selected}}"
+  bind:close="onCloseEditor"
+  bind:save="onSave"
+  bind:delete="onDelete"
+/>
+

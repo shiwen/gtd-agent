@@ -1,0 +1,37 @@
+<view class="container">
+  <view class="titleRow">
+    <view class="title">下一步行动</view>
+    <button class="btnGhost" bindtap="onGetAI" disabled="{{loadingAdvice}}">{{loadingAdvice ? '生成中...' : 'AI建议'}}</button>
+  </view>
+
+  <view class="card" style="padding: 22rpx; margin-bottom: 18rpx;">
+    <view class="muted" wx:if="{{!aiAdvice}}">点击“AI建议”获取推荐任务。</view>
+    <view wx:else class="muted" style="white-space: pre-wrap;">{{aiAdvice}}</view>
+  </view>
+
+  <input class="input" placeholder="搜索任务..." value="{{search}}" bindinput="onSearch" />
+  <view style="height: 16rpx;"></view>
+
+  <view wx:if="{{filtered.length===0}}" class="card" style="padding: 28rpx;">
+    <view class="muted">暂无下一步行动</view>
+  </view>
+
+  <task-card
+    wx:for="{{filtered}}"
+    wx:key="id"
+    task="{{item}}"
+    showDelete="{{true}}"
+    bind:tapTask="onTapTask"
+    bind:deleteTask="onDeleteTask"
+  />
+</view>
+
+<task-editor
+  open="{{editorOpen}}"
+  task="{{selected}}"
+  defaultStatus="next-action"
+  bind:close="onCloseEditor"
+  bind:save="onSaveTask"
+  bind:delete="onDeleteFromEditor"
+/>
+

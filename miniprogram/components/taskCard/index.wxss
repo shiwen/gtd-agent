@@ -1,0 +1,42 @@
+.task {
+  padding: 22rpx;
+  margin-bottom: 18rpx;
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.titleWrap {
+  flex: 1;
+  padding-right: 12rpx;
+}
+
+.taskTitle {
+  font-size: 30rpx;
+  font-weight: 650;
+  color: #E6F6FF;
+}
+
+.taskDesc {
+  font-size: 26rpx;
+  margin-top: 8rpx;
+}
+
+.meta {
+  font-size: 22rpx;
+  margin-top: 10rpx;
+}
+
+.btnDel {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFB4B4;
+  border: 1px solid rgba(255, 180, 180, 0.25);
+  border-radius: 14rpx;
+  font-size: 22rpx;
+  padding: 10rpx 14rpx;
+  line-height: 1.1;
+}
+

@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/inbox/index",
+    "pages/nextActions/index",
+    "pages/projects/index",
+    "pages/scheduled/index",
+    "pages/more/index",
+    "pages/someday/index",
+    "pages/reference/index",
+    "pages/aiChat/index",
+    "pages/projectDetail/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "行动派",
+    "navigationBarBackgroundColor": "#0B1220",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0B1220",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#8A93A6",
+    "selectedColor": "#22D3EE",
+    "backgroundColor": "#0B1220",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/inbox/index",
+        "text": "收集"
+      },
+      {
+        "pagePath": "pages/nextActions/index",
+        "text": "行动"
+      },
+      {
+        "pagePath": "pages/projects/index",
+        "text": "项目"
+      },
+      {
+        "pagePath": "pages/scheduled/index",
+        "text": "日程"
+      },
+      {
+        "pagePath": "pages/more/index",
+        "text": "更多"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
+

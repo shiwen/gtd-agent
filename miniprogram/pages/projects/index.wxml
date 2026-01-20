@@ -1,0 +1,39 @@
+<view class="container">
+  <view class="titleRow">
+    <view class="title">项目</view>
+    <button class="btnPrimary" bindtap="onAdd">+ 新建</button>
+  </view>
+
+  <view wx:if="{{projects.length===0}}" class="card" style="padding: 28rpx;">
+    <view class="muted">暂无项目</view>
+    <view class="muted" style="font-size:24rpx; margin-top:10rpx;">项目用于管理包含多个步骤的目标</view>
+  </view>
+
+  <view
+    wx:for="{{projects}}"
+    wx:key="id"
+    class="card"
+    style="padding: 22rpx; margin-bottom: 18rpx;"
+    bindtap="onTapProject"
+    data-id="{{item.id}}"
+    data-name="{{item.name}}"
+  >
+    <view class="row gap16" style="justify-content: space-between;">
+      <view style="flex:1;">
+        <view style="font-size:30rpx; font-weight:700;">{{item.name}}</view>
+        <view wx:if="{{item.description}}" class="muted" style="font-size:24rpx; margin-top:8rpx;">{{item.description}}</view>
+        <view class="muted" style="font-size:22rpx; margin-top:10rpx;">状态：{{item.status}}</view>
+      </view>
+      <button class="btnGhost" catchtap="onEditProject" data-id="{{item.id}}">编辑</button>
+    </view>
+  </view>
+</view>
+
+<project-editor
+  open="{{editorOpen}}"
+  project="{{selected}}"
+  bind:close="onCloseEditor"
+  bind:save="onSaveProject"
+  bind:delete="onDeleteProject"
+/>
+

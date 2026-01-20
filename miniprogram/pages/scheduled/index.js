@@ -1,0 +1,101 @@
+const api = require('../../services/api');
+
+function getTime(v) {
+  const d = new Date(v);
+  const t = d.getTime();
+  return Number.isNaN(t) ? 0 : t;
+}
+
+Page({
+  data: {
+    tasks: [],
+    filtered: [],
+    search: '',
+    editorOpen: false,
+    selected: null
+  },
+
+  onShow() {
+    this.refresh();
+  },
+
+  async refresh() {
+    try {
+      const res = await api.call('tasks', { action: 'list', status: 'scheduled' });
+      let tasks = res?.tasks || [];
+      tasks = tasks.slice().sort((a, b) => getTime(a.scheduledDate) - getTime(b.scheduledDate));
+      this.setData({ tasks }, () => this.applyFilter());
+    } catch (e) {
+      console.error(e);
+      wx.showToast({ title: '加载失败', icon: 'none' });
+    }
+  },
+
+  applyFilter() {
+    const q = (this.data.search || '').trim().toLowerCase();
+    const filtered = q
+      ? this.data.tasks.filter(t =>
+          (t.title || '').toLowerCase().includes(q) ||
+          (t.description || '').toLowerCase().includes(q)
+        )
+      : this.data.tasks;
+    this.setData({ filtered });
+  },
+
+  onSearch(e) {
+    this.setData({ search: e.detail.value }, () => this.applyFilter());
+  },
+
+  onTapTask(e) {
+    this.setData({ selected: e.detail.task, editorOpen: true });
+  },
+
+  onCloseEditor() {
+    this.setData({ editorOpen: false, selected: null });
+  },
+
+  async onSaveTask(e) {
+    try {
+      await api.call('tasks', { action: 'upsert', task: e.detail.task });
+      this.setData({ editorOpen: false, selected: null });
+      await this.refresh();
+    } catch (err) {
+      console.error(err);
+      wx.showToast({ title: '保存失败', icon: 'none' });
+    }
+  },
+
+  async confirmDelete(id) {
+    return await new Promise(resolve => {
+      wx.showModal({
+        title: '确认删除',
+        content: '确定要删除这个任务吗？',
+        success: res => resolve(res.confirm)
+      });
+    });
+  },
+
+  async onDeleteTask(e) {
+    const id = e.detail.id;
+    if (!(await this.confirmDelete(id))) return;
+    await this.doDelete(id);
+  },
+
+  async onDeleteFromEditor(e) {
+    const id = e.detail.id;
+    if (!(await this.confirmDelete(id))) return;
+    await this.doDelete(id);
+  },
+
+  async doDelete(id) {
+    try {
+      await api.call('tasks', { action: 'delete', id });
+      this.setData({ editorOpen: false, selected: null });
+      await this.refresh();
+    } catch (err) {
+      console.error(err);
+      wx.showToast({ title: '删除失败', icon: 'none' });
+    }
+  }
+});
+
