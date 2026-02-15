@@ -38,6 +38,19 @@ npm run build
 npm start
 ```
 
+### Verification Workflow
+
+Run the helper script after pulling new changes to ensure the latest build is ready to view in your browser:
+
+1. Make the script executable (first run only): `chmod +x verify-web.sh`
+2. Start the dev workflow: `./verify-web.sh dev`
+   - Installs missing dependencies
+   - Boots the Next.js dev server at [http://localhost:3000](http://localhost:3000) with hot reload
+3. For a production-like check: `./verify-web.sh prod`
+   - Builds an optimized bundle, then serves it on the same port
+
+If you prefer to manage dependencies manually, run `npm install` before executing the script.
+
 ## Project Structure
 
 ```
